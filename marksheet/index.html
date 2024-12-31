@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="style/index.css" />
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h1 id="title">Marskheet Creator</h1>
+        <div id="form-card" class="animate__animated animate__fadeIn">
+            <form id="marksheet-form">
+                <div id="horizontal">
+                    <div id="form-group">
+                        <label>School Logo</label>
+                        <input name="schoolLogo" type="file" accept="image/*" id="school-logo-input" />
+                    </div>
+
+                    <div id="form-group">
+                        <label>School Name</label>
+                        <input name="schoolName" placeholder="Wap School" type="text" id="school-name-input" value="Wap School" />
+                    </div>
+    
+                    <div id="form-group">
+                        <label>Tagline</label>
+                        <input name="tagline" placeholder="A creative school" type="text" id="tagline" value="Learn Software Engineering with wap institute" />
+                    </div>
+                </div>
+
+                <div id="horizontal">
+                    <div id="form-group">
+                        <label>Candidate`s Image</label>
+                        <input name="candidateImage" type="file" accept="image/*" id="student-pic-input" />
+                    </div>
+
+                    <div id="form-group">
+                        <label>Candidate`s Name</label>
+                        <input name="candidateName" placeholder="er saurav" type="text" id="candidate-name-input" value="Er Saurav" />
+                    </div>
+    
+                    <div id="form-group">
+                        <label>Fathers`s Name</label>
+                        <input name="fatherName" placeholder="mr raj" type="text" id="fathers-name-input" value="Mr Raj"/>
+                    </div>
+                </div>
+
+                <div id="horizontal">
+                    <div id="form-group">
+                        <label>DOB</label>
+                        <input name="dob" type="date" id="dob-input" value="2024-02-13" />
+                    </div>
+
+                    <div id="form-group">
+                        <label>Gender</label>
+                        <select name="gender" id="choose-gender" value="male">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+    
+                    <div id="form-group">
+                        <label>Class</label>
+                        <input name="class" placeholder="6" type="number" id="class-input" value="1" />
+                    </div>
+
+                    <div id="form-group">
+                        <label>Roll</label>
+                        <input name="roll" placeholder="6" type="number" id="roll-input" value="1"/>
+                    </div>
+                </div>
+
+                <button id="add-subjects" type="button">
+                    <i class="fa fa-plus"></i>
+                    Add Subjects
+                </button>
+
+                <div id="dynamic-area">
+
+                </div>
+
+                <button id="generate">
+                    <i class="fa fa-download"></i>
+                    Generate Your Marksheet Now
+                </button>
+            </form>
+        </div>
+
+        <div id="preview" class="animate__animated animate__fadeIn">
+            <table width="100%">
+                <tr>
+                    <th width="150">
+                        <img src="images/school-logo.png" width="100%" id="school-logo" />
+                    </th>
+                    <td align="center">
+                        <h1 id="school-name">CodingOtt School</h1>
+                        <span id="tagline-text">A Wap Institute subsidiary Organisation | ESTD 2017 AS Coding Organisation</span>
+                    </td>
+                </tr>
+            </table>
+
+            <table width="100%">
+                <tr>
+                    <th width="150" rowspan="4">
+                        <img src="images/student.png" width="100%" id="student-pic" />
+                    </th>
+                </tr>
+                <tr>
+                    <th width="200">Student`s Name</th>
+                    <td id="candidate-name">Er Saurav</td>
+                    <th width="200">Father`s Name</th>
+                    <td id="fathers-name">Mr Raj</td>
+                </tr>
+                <tr>
+                    <th width="200">DOB</th>
+                    <td id="dob">00-00-0000</td>
+                    <th width="200">Gender</th>
+                    <td id="gender">Male</td>
+                </tr>
+                <tr>
+                    <th width="200">Class</th>
+                    <td id="class">4th</td>
+                    <th width="200">Roll</th>
+                    <td id="roll">12</td>
+                </tr>
+            </table>
+
+            <table width="100%">
+                <tr>
+                    <th colspan="3">Subjects</th>
+                    <th>Fullmarks</th>
+                    <th colspan="2">Obtained Marks</th>
+                </tr>
+
+                <tbody id="subject-body">
+
+                </tbody>
+
+                <tr>
+                    <th colspan="5" align="right">Total Marks</th>
+                    <td align="center" id="total-marks">0</td>
+                </tr>
+
+                <tr>
+                    <th colspan="2" align="right">Grade</th>
+                    <td align="center" id="grade"></td>
+                    <th colspan="2" align="right">Percentage</th>
+                    <td align="center" id="percentage">0%</td>
+                </tr>
+                
+            </table>
+
+            <p id="copyright">
+                <i class="fa fa-copyright"></i> CodingOtt | This App is Only For Learning Purpose
+            </p>
+            <small id="warning">Commercial Or Illigal Porpose is Prohibited | All Right Reserved</small>
+        </div>
+    </div>
+</body>
+</html>
